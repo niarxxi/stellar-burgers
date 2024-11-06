@@ -1,14 +1,13 @@
 import { FC, useEffect } from 'react';
 import { ProfileOrdersUI } from '@ui-pages';
 import { Preloader } from '@ui';
-import {
-  fetchCatalog,
-  fetchPersonalOrders,
-  clearPersonalOrders,
-  selectPersonalOrders,
-  selectIsLoading
-} from '../../slices/burgerStoreSlice';
 import { useAppSelector, useAppDispatch } from '../../services/store';
+import {
+  clearPersonalOrders,
+  fetchPersonalOrders,
+  selectIsLoading,
+  selectPersonalOrders
+} from '../../slices/burgerStoreSlice';
 
 const useProfileOrders = () => {
   const dispatch = useAppDispatch();
@@ -18,10 +17,7 @@ const useProfileOrders = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(clearPersonalOrders());
-      await Promise.all([
-        dispatch(fetchCatalog()),
-        dispatch(fetchPersonalOrders())
-      ]);
+      await dispatch(fetchPersonalOrders());
     };
 
     fetchData();

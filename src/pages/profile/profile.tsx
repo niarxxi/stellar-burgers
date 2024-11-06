@@ -1,19 +1,24 @@
 import { ProfileUI } from '@ui-pages';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
-import {
-  updateUserProfile,
-  selectIsLoading,
-  selectUserData
-} from '../../slices/burgerStoreSlice';
+import { FC, SyntheticEvent, useEffect } from 'react';
 import { Preloader } from '@ui';
 import { useAppSelector, useAppDispatch } from '../../services/store';
+import { useForm } from '../../hooks/useForm';
+import {
+  selectIsLoading,
+  selectUserData,
+  updateUserProfile
+} from '../../slices/burgerStoreSlice';
 
 export const Profile: FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUserData);
   const isLoading = useAppSelector(selectIsLoading);
 
-  const [formValue, setFormValue] = useState({
+  const {
+    values: formValue,
+    handleChange,
+    setValues: setFormValue
+  } = useForm({
     name: user.name,
     email: user.email,
     password: ''
@@ -25,7 +30,7 @@ export const Profile: FC = () => {
       name: user?.name || '',
       email: user?.email || ''
     }));
-  }, [user]);
+  }, [user, setFormValue]);
 
   const isFormChanged =
     formValue.name !== user?.name ||
@@ -46,13 +51,6 @@ export const Profile: FC = () => {
     });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValue((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   if (isLoading) {
     return <Preloader />;
   }
@@ -63,7 +61,7 @@ export const Profile: FC = () => {
       isFormChanged={isFormChanged}
       handleCancel={handleCancel}
       handleSubmit={handleSubmit}
-      handleInputChange={handleInputChange}
+      handleInputChange={handleChange}
     />
   );
 };

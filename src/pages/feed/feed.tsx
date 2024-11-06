@@ -3,10 +3,9 @@ import { FeedUI } from '@ui-pages';
 import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import {
-  selectOrderHistory,
-  fetchOrdersFeed,
   clearOrderHistory,
-  fetchCatalog
+  fetchOrdersFeed,
+  selectOrderHistory
 } from '../../slices/burgerStoreSlice';
 
 const useFeedData = () => {
@@ -14,7 +13,7 @@ const useFeedData = () => {
   const dispatch = useAppDispatch();
 
   const loadData = async () => {
-    await Promise.all([dispatch(fetchCatalog()), dispatch(fetchOrdersFeed())]);
+    await dispatch(fetchOrdersFeed());
   };
 
   const refreshFeeds = () => {

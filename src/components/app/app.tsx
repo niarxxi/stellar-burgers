@@ -22,7 +22,6 @@ import {
 } from '@components';
 import {
   hideDetails,
-  fetchOrdersFeed,
   fetchCatalog,
   fetchUserProfile,
   initializeApp,
@@ -56,7 +55,6 @@ export const App = () => {
   const authToken = getCookie('accessToken');
   const isAuth = useAppSelector(selectIsAuth);
   const ingredients = useAppSelector(selectCatalog);
-  const orderHistory = useAppSelector(selectOrderHistory);
   const currentOrder = useAppSelector(selectCurrentOrder);
   const showModal = useAppSelector(selectIsDetailsVisible);
 
@@ -70,14 +68,10 @@ export const App = () => {
       if (!ingredients.length) {
         dispatch(fetchCatalog());
       }
-
-      if (!orderHistory.length) {
-        dispatch(fetchOrdersFeed());
-      }
     };
 
     initApp();
-  }, [dispatch, isAuth, authToken, ingredients.length, orderHistory.length]);
+  }, [dispatch, isAuth, authToken, ingredients.length]);
 
   const mainRoutes = useMemo(
     () => (
