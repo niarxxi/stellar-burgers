@@ -1,3 +1,10 @@
+export type TBurgerBuilder = {
+  bun: Partial<TIngredient>;
+  ingredients: TIngredientWithId[];
+};
+
+export type TIngredientWithId = TIngredient & { id: string };
+
 export type TIngredient = {
   _id: string;
   name: string;
