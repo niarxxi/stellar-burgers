@@ -1,4 +1,9 @@
 import { FC } from 'react';
+import {
+  selectOrderHistory,
+  selectOrderStats
+} from '../../slices/burgerStoreSlice';
+import { useAppSelector } from '../../services/store';
 
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '../ui/feed-info';
@@ -10,9 +15,8 @@ const getOrders = (orders: TOrder[], status: string): number[] =>
     .slice(0, 20);
 
 export const FeedInfo: FC = () => {
-  /** TODO: взять переменные из стора */
-  const orders: TOrder[] = [];
-  const feed = {};
+  const orders: TOrder[] = useAppSelector(selectOrderHistory);
+  const stats = useAppSelector(selectOrderStats);
 
   const readyOrders = getOrders(orders, 'done');
 
@@ -22,7 +26,10 @@ export const FeedInfo: FC = () => {
     <FeedInfoUI
       readyOrders={readyOrders}
       pendingOrders={pendingOrders}
-      feed={feed}
+      feed={{
+        total: stats.total,
+        totalToday: stats.today
+      }}
     />
   );
 };
