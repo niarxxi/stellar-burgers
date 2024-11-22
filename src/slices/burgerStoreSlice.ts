@@ -21,7 +21,7 @@ import {
 import { deleteCookie, setCookie } from '../utils/cookie';
 import { generateId } from '../utils/idGenerator';
 
-type TBurgerStoreState = {
+export type TBurgerStoreState = {
   catalog: TIngredient[];
   isLoading: boolean;
   activeOrder: TOrder | null;
@@ -41,7 +41,7 @@ type TBurgerStoreState = {
   currentOrder: TOrder | null;
 };
 
-const initialState: TBurgerStoreState = {
+export const initialState: TBurgerStoreState = {
   catalog: [],
   isLoading: false,
   activeOrder: null,
@@ -190,6 +190,10 @@ const burgerStoreSlice = createSlice({
       .addCase(fetchCatalog.fulfilled, (state, action) => {
         state.isLoading = false;
         state.catalog = action.payload;
+      })
+      .addCase(fetchCatalog.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.error.message || 'Произошла ошибка';
       })
       .addCase(createOrder.pending, (state) => {
         state.isOrderProcessing = true;
