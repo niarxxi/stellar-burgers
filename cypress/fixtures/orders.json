@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "orders": [
+    {
+      "_id": "673c0bb9b27b06001c3e9112",
+      "ingredients": [
+        "643d69a5c3f7b9001cfa093c",
+        "643d69a5c3f7b9001cfa0941",
+        "643d69a5c3f7b9001cfa0941",
+        "643d69a5c3f7b9001cfa093c"
+      ],
+      "status": "done",
+      "name": "Краторный био-марсианский бургер",
+      "createdAt": "2024-11-19T03:53:29.228Z",
+      "updatedAt": "2024-11-19T03:53:30.001Z",
+      "number": 59755
+    },
+    {
+      "_id": "673c0ba3b27b06001c3e9111",
+      "ingredients": [
+        "643d69a5c3f7b9001cfa093c",
+        "643d69a5c3f7b9001cfa0941",
+        "643d69a5c3f7b9001cfa0940",
+        "643d69a5c3f7b9001cfa093c"
+      ],
+      "status": "done",
+      "name": "Краторный био-марсианский метеоритный бургер",
+      "createdAt": "2024-11-19T03:53:07.986Z",
+      "updatedAt": "2024-11-19T03:53:08.981Z",
+      "number": 59754
+    },
+    {
+      "_id": "673c0aa7b27b06001c3e9110",
+      "ingredients": [
+        "643d69a5c3f7b9001cfa093c",
+        "643d69a5c3f7b9001cfa093e",
+        "643d69a5c3f7b9001cfa093f",
+        "643d69a5c3f7b9001cfa093c"],
+      "status": "done",
+      "name": "Краторный бессмертный люминесцентный бургер",
+      "createdAt": "2024-11-19T03:48:55.129Z",
+      "updatedAt": "2024-11-19T03:48:56.000Z",
+      "number": 59753
+    }
+  ],
+  "total": 59381,
+  "totalToday": 110
+}
